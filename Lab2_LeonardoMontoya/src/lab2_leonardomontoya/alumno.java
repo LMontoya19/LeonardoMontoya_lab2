@@ -30,15 +30,14 @@ public class alumno {
         this.cuenta = cuenta;
         this.nacimiento = nacimiento;
         this.edad = edad;
-        this.ciudad= ciudad;
-        this.nacionalidad= nacionalidad;
-        this.id = id ;
+        this.ciudad = ciudad;
+        this.nacionalidad = nacionalidad;
+        this.id = id;
         this.user = user;
         this.password = password;
         this.notas = notas;
         this.examenes = examenes;
-            
-        
+
     }
 
     public String getNombre() {
@@ -127,6 +126,10 @@ public class alumno {
 
     public void setExamenes(ArrayList<examen> examenes) {
         this.examenes = examenes;
+    }
+
+    public String toString() {
+        return "Nombre" + nombre + "\n Numero de cuenta" + cuenta + "\n Fecha de nacimiento" + nacimiento + "\n Edad" + edad + "\n Ciudad de residencia" + ciudad + "\n Nacionalidad" + nacionalidad + "\n Usuario" + user;
     }
 
 }

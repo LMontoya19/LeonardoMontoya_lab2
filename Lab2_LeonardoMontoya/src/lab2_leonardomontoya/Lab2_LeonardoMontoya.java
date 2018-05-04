@@ -40,6 +40,7 @@ public class Lab2_LeonardoMontoya {
                     switch (opadmin) {
                         case 1:
                             ArrayList<String> preguntas = new ArrayList<>();
+                            ArrayList<String> respuestas = new ArrayList<>();
                             System.out.println("Ingrese la clase de la cual es el examen");
                             String clase = entrada.next();
                             char resp = 's';
@@ -52,8 +53,17 @@ public class Lab2_LeonardoMontoya {
                                 resp = entrada.next().toLowerCase().charAt(0);
 
                             }
+                            examenes.add(new examen(clase, preguntas, respuestas));
+                            for (alumno t : alumnos) {
+                                if (t.getExamenes().contains(new examen(clase, preguntas, respuestas))) {
+
+                                } else {
+                                    alumnos.get(alumnos.indexOf(t)).getExamenes().add(new examen(clase, preguntas, respuestas));
+                                }
+                            }
                             break;
                     }
+                    break;
                 case 2:
                     System.out.println("Ingrese el nombre");
                     String nombre = entrada.nextLine();
@@ -67,6 +77,7 @@ public class Lab2_LeonardoMontoya {
                     System.out.println("Ingrese dia de nacimiento");
                     int dia = entrada.nextInt();
                     Date n = new Date();
+
                     n.setYear(año);
                     n.setMonth(mes);
                     n.setDate(dia);
@@ -101,8 +112,34 @@ public class Lab2_LeonardoMontoya {
                     }
                     if (log == true) {
                         System.out.println("Bienvenido" + alumnos.get(aactual).getNombre());
+                        System.out.println("1) Ver datos");
+                        System.out.println("2) Modificar datos");
+                        System.out.println("3)Realizar examenes");
+                        System.out.println("4) Ver notas");
+                        System.out.println("Ingrese su opcion");
+                        int opalumno = entrada.nextInt();
+                        switch (opalumno) {
+                            case 1:
+                                System.out.println(alumnos.get(aactual));
+                                break;
+                            case 3:
+                                for (examen t : alumnos.get(aactual).getExamenes()) {
+                                    for (int i = 0; i < t.getPreguntas().size(); i++) {
+                                        System.out.println("Tiene examen de" + t.getClase() + "Desea realizarlo s/n");
+                                        char resp = entrada.next().toLowerCase().charAt(0);
+                                        if (resp == 's') {
+                                            System.out.println(t.getPreguntas().get(i));
+                                            
+                                            String respuesta = entrada.nextLine();
+                                            entrada.next();
+                                            t.getRespuestas().add(respuesta);
+                                        }
+                                    }
+                                }
+                        }
                     } else {
                         System.out.println("Usuario o contraseña incorrecta");
+
                     }
             }
         }

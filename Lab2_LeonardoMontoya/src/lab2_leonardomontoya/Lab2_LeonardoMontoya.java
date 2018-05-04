@@ -13,6 +13,8 @@ import java.util.*;
 
 public class Lab2_LeonardoMontoya {
 
+    static ArrayList<examen> examenes = new ArrayList<>();
+
     /**
      * @param args the command line arguments
      */
@@ -20,7 +22,7 @@ public class Lab2_LeonardoMontoya {
         // TODO code application logic here
         ArrayList<alumno> alumnos = new ArrayList<>();
         ArrayList<notas> notas = new ArrayList<>();
-        ArrayList<examen> examenes = new ArrayList<>();
+        //ArrayList<examen> examenes = new ArrayList<>();
         Scanner entrada = new Scanner(System.in);
         char r = 's';
         while (r == 's') {
@@ -42,23 +44,24 @@ public class Lab2_LeonardoMontoya {
                             ArrayList<String> preguntas = new ArrayList<>();
                             ArrayList<String> respuestas = new ArrayList<>();
                             System.out.println("Ingrese la clase de la cual es el examen");
-                            String clase = entrada.next();
+                            String clase = entrada.nextLine();
+                            entrada.nextLine();
                             char resp = 's';
                             while (resp == 's') {
                                 System.out.println("Ingrese la pregunta");
                                 String pregunta = entrada.nextLine();
+                                
                                 preguntas.add(pregunta);
-                                entrada.next();
                                 System.out.println("Desea ingresar otra pregunta?s/n");
                                 resp = entrada.next().toLowerCase().charAt(0);
 
                             }
-                            examenes.add(new examen(clase, preguntas, respuestas));
+                            examenes.add(new examen(clase, preguntas, respuestas, ""));
                             for (alumno t : alumnos) {
-                                if (t.getExamenes().contains(new examen(clase, preguntas, respuestas))) {
+                                if (t.getExamenes().contains(new examen(clase, preguntas, respuestas, ""))) {
 
                                 } else {
-                                    alumnos.get(alumnos.indexOf(t)).getExamenes().add(new examen(clase, preguntas, respuestas));
+                                    alumnos.get(alumnos.indexOf(t)).getExamenes().add(new examen(clase, preguntas, respuestas, ""));
                                 }
                             }
                             break;
@@ -67,7 +70,7 @@ public class Lab2_LeonardoMontoya {
                 case 2:
                     System.out.println("Ingrese el nombre");
                     String nombre = entrada.nextLine();
-                    entrada.next();
+                    entrada.nextLine();
                     System.out.println("Ingrese el numero de cuenta");
                     String cuenta = entrada.next();
                     System.out.println("Ingrese año de nacimiento");
@@ -85,10 +88,10 @@ public class Lab2_LeonardoMontoya {
                     String edad = entrada.next();
                     System.out.println("Ingrese ciudad de residencia");
                     String ciudad = entrada.nextLine();
-                    entrada.next();
+                    entrada.nextLine();
                     System.out.println("Ingrese nacionalidad");
                     String nacionalidad = entrada.nextLine();
-                    entrada.next();
+                    entrada.nextLine();
                     System.out.println("Ingrese id");
                     String id = entrada.next();
                     System.out.println("Ingrese usuario");
@@ -124,17 +127,22 @@ public class Lab2_LeonardoMontoya {
                                 break;
                             case 3:
                                 for (examen t : alumnos.get(aactual).getExamenes()) {
-                                    for (int i = 0; i < t.getPreguntas().size(); i++) {
-                                        System.out.println("Tiene examen de" + t.getClase() + "Desea realizarlo s/n");
-                                        char resp = entrada.next().toLowerCase().charAt(0);
-                                        if (resp == 's') {
-                                            System.out.println(t.getPreguntas().get(i));
-                                            
+                                    System.out.println("Tiene examen de" + t.getClase() + "Desea realizarlo s/n");
+                                    char resp = entrada.next().toLowerCase().charAt(0);
+                                    if (resp == 's') {
+                                        for (int i = 0; i < t.getPreguntas().size(); i++) {
+
+                                            System.out.println(examenes.get(i).getPreguntas().get(i));
                                             String respuesta = entrada.nextLine();
-                                            entrada.next();
+                                            entrada.nextLine();
                                             t.getRespuestas().add(respuesta);
+
                                         }
+
                                     }
+                                    alumnos.get(aactual).getExamenes().remove(t);
+                                    t.setNombre(alumnos.get(aactual).getNombre());
+                                    examenes.add(t);
                                 }
                         }
                     } else {

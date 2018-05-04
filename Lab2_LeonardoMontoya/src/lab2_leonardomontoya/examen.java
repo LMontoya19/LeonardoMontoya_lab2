@@ -15,10 +15,20 @@ public class examen {
 private String clase;
 private ArrayList<String> preguntas;
 private ArrayList<String> Respuestas;
-    public examen(String clase, ArrayList<String> preguntas, ArrayList<String> Respuestas) {
+private String nombre;
+    public examen(String clase, ArrayList<String> preguntas, ArrayList<String> Respuestas,String nombre) {
     this.clase = clase;
     this.preguntas = preguntas;
     this.Respuestas = Respuestas;
+    this.nombre = nombre;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public String getClase() {

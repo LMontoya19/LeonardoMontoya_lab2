@@ -21,7 +21,7 @@ public class Lab2_LeonardoMontoya {
     public static void main(String[] args) {
         // TODO code application logic here
         ArrayList<alumno> alumnos = new ArrayList<>();
-        ArrayList<notas> notas = new ArrayList<>();
+        ArrayList<notas> nota = new ArrayList<>();
         //ArrayList<examen> examenes = new ArrayList<>();
         Scanner entrada = new Scanner(System.in);
         char r = 's';
@@ -33,10 +33,10 @@ public class Lab2_LeonardoMontoya {
             int opcion = entrada.nextInt();
             switch (opcion) {
                 case 1:
-                    System.out.println("Crear examen");
-                    System.out.println("Revisar examenes");
-                    System.out.println("Ver notas");
-                    System.out.println("Modificar notas");
+                    System.out.println("1)Crear examen");
+                    System.out.println("2)Revisar examenes");
+                    System.out.println("3)Ver notas");
+                    System.out.println("4)Modificar notas");
                     System.out.println("Ingrese su opcion");
                     int opadmin = entrada.nextInt();
                     switch (opadmin) {
@@ -50,7 +50,7 @@ public class Lab2_LeonardoMontoya {
                             while (resp == 's') {
                                 System.out.println("Ingrese la pregunta");
                                 String pregunta = entrada.nextLine();
-                                
+
                                 preguntas.add(pregunta);
                                 System.out.println("Desea ingresar otra pregunta?s/n");
                                 resp = entrada.next().toLowerCase().charAt(0);
@@ -65,8 +65,32 @@ public class Lab2_LeonardoMontoya {
                                 }
                             }
                             break;
+
+                        case 2:
+                            int j = 0;
+                            for (examen e : examenes) {
+                                j = examenes.indexOf(e);
+                                for (int i = 0; i < e.getPreguntas().size(); i++) {
+
+                                    System.out.println(e.getPreguntas().get(i));
+                                    System.out.println(e.getRespuestas().get(i));
+
+                                }
+                            }
+                            System.out.println("Ingrese notas");
+                            String notad = entrada.next();
+                            nota.add(new notas(examenes.get(j).getNombre(), examenes.get(j).getClase(), notad));
+                            break;
+                        case 3:
+                            for (notas n : nota) {
+                                System.out.print(n.getAlumno());
+                                System.out.print("   "+n.getClase());
+                                System.out.print("  "+n.getCalificacion());
+                            }
+                            break;
                     }
                     break;
+
                 case 2:
                     System.out.println("Ingrese el nombre");
                     String nombre = entrada.nextLine();
@@ -98,7 +122,7 @@ public class Lab2_LeonardoMontoya {
                     String usuario = entrada.next();
                     System.out.println("Ingrese password");
                     String password = entrada.next();
-                    alumnos.add(new alumno(nombre, cuenta, n, edad, ciudad, nacionalidad, id, usuario, password, notas, examenes));
+                    alumnos.add(new alumno(nombre, cuenta, n, edad, ciudad, nacionalidad, id, usuario, password, nota, examenes));
                     break;
                 case 3:
                     boolean log = false;

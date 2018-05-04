@@ -25,7 +25,7 @@ public class alumno {
     private ArrayList<notas> notas;
     private ArrayList<examen> examenes;
 
-    alumno(String nombre, String ncuenta, Date nacimiento, String edad, String ciudad, String nacionalidad, String id, String user, String password, ArrayList<notas> notas, ArrayList<examen> examenes) {
+    alumno(String nombre, String cuenta, Date nacimiento, String edad, String ciudad, String nacionalidad, String id, String user, String password, ArrayList<notas> notas, ArrayList<examen> examenes) {
         this.nombre = nombre;
         this.cuenta = cuenta;
         this.nacimiento = nacimiento;

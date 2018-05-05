@@ -84,9 +84,12 @@ public class Lab2_LeonardoMontoya {
                         case 3:
                             for (notas n : nota) {
                                 System.out.print(n.getAlumno());
-                                System.out.print("   "+n.getClase());
-                                System.out.print("  "+n.getCalificacion());
+                                System.out.print("   " + n.getClase());
+                                System.out.print("  " + n.getCalificacion());
                             }
+                            break;
+
+                        case 4:
                             break;
                     }
                     break;
@@ -168,6 +171,14 @@ public class Lab2_LeonardoMontoya {
                                     t.setNombre(alumnos.get(aactual).getNombre());
                                     examenes.add(t);
                                 }
+                            case 4:
+                                for (notas no : nota) {
+                                    if (no.getAlumno().equals(alumnos.get(aactual).getNotas())) {
+                                        System.out.print(no.getClase());
+                                        System.out.println(no.getCalificacion());
+                                    }
+                                }
+                                break;
                         }
                     } else {
                         System.out.println("Usuario o contraseña incorrecta");
